@@ -47,4 +47,10 @@ public class PetService {
 		
 		return petRepository.save(entity);
 	}
+	
+	public void delete(Long id) {
+		Pet entity = petRepository.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("Falha ao tentar deletar o pet"));
+		petRepository.delete(entity);
+	}
 }
