@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import paulohenriqueb.silva.exceptions.ResourceNotFoundException;
 import paulohenriqueb.silva.model.Usuario;
 import paulohenriqueb.silva.repositories.UsuarioRepository;
-
+@Service
 public class UsuarioService {
 
 	Logger logger = Logger.getLogger(UsuarioService.class.getName());

@@ -1,6 +1,7 @@
 package paulohenriqueb.silva.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +16,11 @@ public class Pet implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="pet_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "", nullable = false, length = 50)
+	@Column(name = "pet_nome", nullable = false, length = 50)
 	private String nome;
 	
 	@Column(name = "pet_tipo", nullable = false, length = 20)
@@ -29,9 +31,6 @@ public class Pet implements Serializable {
 	
 	@Column(name = "pet_possui_debilidade", nullable = false)
 	private Boolean possuiDebilidade;
-	
-	@Column(name = "pet_debilidade", nullable = true, length = 100)
-	private String debilidade;
 	
 	@Column(name = "fk_instituicao_id", nullable = false)
 	private Long instituicaoId;
@@ -76,13 +75,6 @@ public class Pet implements Serializable {
 		this.possuiDebilidade = possuiDebilidade;
 	}
 
-	public String getDebilidade() {
-		return debilidade;
-	}
-
-	public void setDebilidade(String debilidade) {
-		this.debilidade = debilidade;
-	}
 
 	public Long getInstituicaoId() {
 		return instituicaoId;
@@ -90,6 +82,25 @@ public class Pet implements Serializable {
 
 	public void setInstituicaoId(Long instituicaoId) {
 		this.instituicaoId = instituicaoId;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, instituicaoId, nome, possuiDebilidade, temperamento, tipo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pet other = (Pet) obj;
+		return Objects.equals(id, other.id) && Objects.equals(instituicaoId, other.instituicaoId)
+				&& Objects.equals(nome, other.nome) && Objects.equals(possuiDebilidade, other.possuiDebilidade)
+				&& Objects.equals(temperamento, other.temperamento) && Objects.equals(tipo, other.tipo);
 	}
 	
 	

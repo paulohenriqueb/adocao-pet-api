@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import paulohenriqueb.silva.exceptions.ResourceNotFoundException;
 import paulohenriqueb.silva.model.Instituicao;
 import paulohenriqueb.silva.repositories.InstituicaoRepository;
-
+@Service
 public class InstituicaoService {
 
 	@Autowired

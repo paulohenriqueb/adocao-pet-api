@@ -1,6 +1,7 @@
 package paulohenriqueb.silva.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,8 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name ="usuario_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "usuario_nome", nullable = false, length = 100)
@@ -101,6 +103,26 @@ public class Usuario implements Serializable{
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cep, email, endereco, id, nome, senha, telefone, uf);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(cep, other.cep) && Objects.equals(email, other.email)
+				&& Objects.equals(endereco, other.endereco) && Objects.equals(id, other.id)
+				&& Objects.equals(nome, other.nome) && Objects.equals(senha, other.senha)
+				&& Objects.equals(telefone, other.telefone) && Objects.equals(uf, other.uf);
 	}
 	
 	

@@ -1,6 +1,7 @@
 package paulohenriqueb.silva.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name = "adocao_solidaria")
+@Table(name = "tb_instituicao")
 public class Instituicao implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "instituicao_id")
 	private Long id;
 	
@@ -24,14 +25,14 @@ public class Instituicao implements Serializable{
 	@Column(name = "instituicao_endereco", nullable = false, length = 120)
 	private String enderecoInstituicao;
 	
-	@Column(name = "instituicao_horario_atendimento", nullable = false, length = 40)
+	@Column(name = "instituicao_horario_atendimento", nullable = false, length = 100)
 	private String horarioAtendimento;
 	
 	@Column(name = "instituicao_responsavel", nullable = false, length = 80)
 	private String responsavelInstituicao;
 	
 	@Column(name = "instituicao_rede_social", nullable= true, length = 100)
-	private String redeSocialInstituicao;
+	private Long redeSocialInstituicao;
 	
 	@Column(name = "instituicao_email", nullable = false, length = 100)
 	private String emailInstituicao;
@@ -86,11 +87,11 @@ public class Instituicao implements Serializable{
 		this.responsavelInstituicao = responsavelInstituicao;
 	}
 
-	public String getRedeSocialInstituicao() {
+	public Long getRedeSocialInstituicao() {
 		return redeSocialInstituicao;
 	}
 
-	public void setRedeSocialInstituicao(String redeSocialInstituicao) {
+	public void setRedeSocialInstituicao(Long redeSocialInstituicao) {
 		this.redeSocialInstituicao = redeSocialInstituicao;
 	}
 
@@ -125,4 +126,31 @@ public class Instituicao implements Serializable{
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cep, emailInstituicao, enderecoInstituicao, horarioAtendimento, id, idPetRelacional,
+				nomeInstituicao, redeSocialInstituicao, responsavelInstituicao, telefone);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Instituicao other = (Instituicao) obj;
+		return Objects.equals(cep, other.cep) && Objects.equals(emailInstituicao, other.emailInstituicao)
+				&& Objects.equals(enderecoInstituicao, other.enderecoInstituicao)
+				&& Objects.equals(horarioAtendimento, other.horarioAtendimento) && Objects.equals(id, other.id)
+				&& Objects.equals(idPetRelacional, other.idPetRelacional)
+				&& Objects.equals(nomeInstituicao, other.nomeInstituicao)
+				&& Objects.equals(redeSocialInstituicao, other.redeSocialInstituicao)
+				&& Objects.equals(responsavelInstituicao, other.responsavelInstituicao)
+				&& Objects.equals(telefone, other.telefone);
+	}
+	
+	
 }

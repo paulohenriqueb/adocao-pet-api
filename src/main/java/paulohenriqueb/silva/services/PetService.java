@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import paulohenriqueb.silva.exceptions.ResourceNotFoundException;
 import paulohenriqueb.silva.model.Pet;
 import paulohenriqueb.silva.repositories.PetRepository;
-
+@Service
 public class PetService {
 	
 	Logger logger = Logger.getLogger(PetService.class.getName());
@@ -42,7 +43,6 @@ public class PetService {
 		entity.setTipo(pet.getTipo());
 		entity.setTemperamento(pet.getTemperamento());
 		entity.setPossuiDebilidade(pet.getPossuiDebilidade());
-		entity.setDebilidade(pet.getDebilidade());
 		entity.setInstituicaoId(pet.getInstituicaoId());
 		
 		return petRepository.save(entity);
